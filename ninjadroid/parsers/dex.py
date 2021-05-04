@@ -82,7 +82,7 @@ class DexParser:
         self.logger.debug("Strings extracted: %d", len(strings))
 
         self.logger.debug("Extracting URLs...")
-        urls = self.parse_signatures(signature=UriSignature(), strings=strings, min_string_len=6)
+        urls = self.parse_signatures(signature=UriSignature(), strings=strings, min_string_len=11) # don't try to change the min string length here
         self.logger.debug("URLs extracted: %s ", len(urls))
         strings = []
 
@@ -111,7 +111,7 @@ class DexParser:
 
     @staticmethod
     def parse_strings(filepath: str) -> List:
-        with Popen("strings " + filepath, stdout=PIPE, stderr=None, shell=True) as process:
+        with Popen("strings -n 11 " + filepath, stdout=PIPE, stderr=None, shell=True) as process:
             strings = filter(
                 lambda string: string != "",
                 (string.strip() for string in process.communicate()[0].decode("utf-8").splitlines())
