@@ -18,7 +18,7 @@ class UriSignature(Signature):
         regex = r'('
 
         # Scheme (HTTP, HTTPS, FTP and SFTP):
-        regex += r'(?:(https?|s?ftp):\/\/)?'
+        regex += r'(?:(https?|s?ftp):\/\/)'
 
         # www:
         regex += r'(?:www\.)?'

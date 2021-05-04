@@ -77,17 +77,19 @@ class DexParser:
         self.logger.debug("Parsing dex file: filepath=\"%s\", filename=\"%s\"", filepath, filename)
         file = FileParser(self.logger).parse(filepath, filename)
 
-        self.logger.debug("Extracting strings...")
+        #self.logger.debug("Extracting strings...")
         strings = self.parse_strings(filepath)
         self.logger.debug("Strings extracted: %d", len(strings))
 
         self.logger.debug("Extracting URLs...")
         urls = self.parse_signatures(signature=UriSignature(), strings=strings, min_string_len=6)
         self.logger.debug("URLs extracted: %s ", len(urls))
+        strings = []
 
-        self.logger.debug("Extracting shell commands...")
-        shell_commands = self.parse_signatures(signature=ShellSignature(), strings=strings)
-        self.logger.debug("Shell commands extracted: %s", len(shell_commands))
+        #self.logger.debug("Extracting shell commands...")
+        #shell_commands = self.parse_signatures(signature=ShellSignature(), strings=strings)
+        #self.logger.debug("Shell commands extracted: %s", len(shell_commands))
+        shell_commands = []
 
         # TODO: improve custom signatures parsing performance (commented in the meanwhile because far too slow)
         # self.logger.debug("Extracting custom signatures...")
