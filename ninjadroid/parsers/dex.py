@@ -98,11 +98,11 @@ class DexParser:
 
         return Dex(
             filename=file.get_file_name(),
-            size=file.get_size(),
-            md5hash=file.get_md5(),
-            sha1hash=file.get_sha1(),
-            sha256hash=file.get_sha256(),
-            sha512hash=file.get_sha512(),
+            size="",#file.get_size(),
+            md5hash="",#file.get_md5(),
+            sha1hash="",#file.get_sha1(),
+            sha256hash="",#file.get_sha256(),
+            sha512hash="",#file.get_sha512(),
             strings=strings,
             urls=urls,
             shell_commands=shell_commands,

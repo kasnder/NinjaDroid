@@ -57,13 +57,14 @@ class APK(File):
         return self.__other
 
     def as_dict(self) -> Dict:
-        dump = super().as_dict()
-        dump["name"] = self.__app_name
+        #dump = super().as_dict()
+        #dump["name"] = self.__app_name
         #dump["cert"] = self.__cert.as_dict()
         #dump["manifest"] = self.__manifest.as_dict()
-        dump["dex"] = [dex.as_dict() for dex in self.__dex]
-        dump["other"] = [file.as_dict() for file in self.__other]
-        return dump
+        #dump["dex"] = [dex.as_dict() for dex in self.__dex]
+        #dump["other"] = [file.as_dict() for file in self.__other]
+        #return dump
+        return list(set([url for dex in self.__dex for url in dex.as_dict()['urls']]))
 
 
 
@@ -143,10 +144,10 @@ class ApkParser:
         return APK(
             filename=file.get_file_name(),
             size=file.get_size(),
-            md5hash=file.get_md5(),
-            sha1hash=file.get_sha1(),
-            sha256hash=file.get_sha256(),
-            sha512hash=file.get_sha512(),
+            md5hash="",#file.get_md5(),
+            sha1hash="",#file.get_sha1(),
+            sha256hash="",#file.get_sha256(),
+            sha512hash="",#file.get_sha512(),
             app_name=Aapt.get_app_name(filepath),
             cert=cert,
             manifest=manifest,
